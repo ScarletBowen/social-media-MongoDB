@@ -33,7 +33,6 @@ NPM Packages
 - express
 - dotenv
 - mongoose 
-- moment
 
 <br>
 
