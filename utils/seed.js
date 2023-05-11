@@ -1,33 +1,63 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
 
+const users = [
+    {
+        username: 'Adam',
+        email: 'adam@gmail.com',
+    },
+    {
+        username: 'Bean',
+        email: 'bean@gmail.com'
+    },
+    {
+        username: 'Carol',
+        email: 'carol@gmail.com'
+    },
+    {
+        username: 'Dennis',
+        email: 'dennis@gmail.com'
+    },
+    {
+        username: 'Eric',
+        email: 'eric@gmail.com'
+    },
+    {
+        username: 'Frank',
+        email: 'frank@gmail.com'
+    },
+    {
+        username: 'Gabe',
+        email: 'gabe@gmail.com'
+    },
+    {
+        username: 'Hillary',
+        email: 'hillary@gmail.com'
+    },
+    {
+        username: 'Issac',
+        email: 'issac@gmail.com'
+    },
+    {
+        username: 'Jonas',
+        email: 'jonas@gmail.com'
+    },
+    {
+        username: 'Kelvin',
+        email: 'kelvin@gmail.com'
+    },
+  ]
 
 connection.on('error', (err) => err);
 
 connection.once('open', async () => {
-  console.log('connected');
+    console.log('connected');
+    await Thought.deleteMany({});
+    await User.deleteMany({});
+  
+    await User.collection.insertMany(users);
 
-  // Drop existing courses
-  await Thought.deleteMany({});
-
-  // Drop existing students
-  await User.deleteMany({});
-
-  // Create empty array to hold the students
-  const users = [];
-});
-  }
-
-  // Add users to the collection and await the results
-  await User.collection.insertMany(users);
-
-  // Add thoughts to the collection and await the results
-  await Thought.collection.insertOne({
-    
+    console.info('Seeding complete! 🌱');
+    process.exit(0);
   });
-
-  // Log out the seed data to indicate what should appear in the database
-  console.table(users);
-  console.info('Seeding complete! 🌱');
-  process.exit(0);
-});
+  
